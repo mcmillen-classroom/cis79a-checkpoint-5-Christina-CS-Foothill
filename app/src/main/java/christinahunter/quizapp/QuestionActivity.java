@@ -31,6 +31,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private Button mDMCButton;
     private EditText mEditText;
     private Button mCheckButton;
+    private Button mCheatButton;
+    private boolean mCheated = false;
     private int mScore = 0;
     private TextView mQuestionStatusView;
     private Question[] mQuestionBank = new Question[9];
@@ -82,6 +84,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         //previous and next button container
         mNextButton = (ImageButton) findViewById(R.id.next_button);
         mPreviousButton = (ImageButton) findViewById(R.id.previous_button);
+        mCheatButton = (Button) findViewById(R.id.cheat_button);
         mScoreView = (TextView) findViewById(R.id.score_view);
 
 
@@ -99,6 +102,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         mBMCButton.setOnClickListener(this);
         mCMCButton.setOnClickListener(this);
         mDMCButton.setOnClickListener(this);
+        mCheatButton.setOnClickListener(this);
 
 
     }
@@ -208,6 +212,9 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 mDMCButton.setBackgroundColor(getResources().getColor(R.color.green));
             else
                 mDMCButton.setBackgroundColor(getResources().getColor(R.color.red));
+        }
+        else if(v.getId() == R.id.cheat_button){
+            // TODO: Launch CheatActivity
         }
     }
 

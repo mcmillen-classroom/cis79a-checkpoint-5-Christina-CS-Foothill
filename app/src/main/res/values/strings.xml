@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Bleach Quiz App</string>
-    <string name ="title_text">Bleach Quiz App</string>
+    <string name="title_text">Bleach Quiz App</string>
     <string name="true_button">True</string>
     <string name="false_button">False</string>
     <string name="next_button">Next</string>
@@ -10,6 +10,8 @@
     <string name="score_text">Score: 0</string>
     <string name="question_status_answered">You already answered this question.</string>
     <string name="check_button">Check</string>
+    <string name="cheat_button">Cheat?</string>
+    <string name="cheat_warning">Are you sure you want to cheat? Cheaters never prosper..</string>
 
     <string name="question_1">The anime Bleach features a main character with bright red hair.</string>
 
@@ -40,6 +42,7 @@
 
     <string name="question_9">Who is the captain of squad 10?</string>
     <string name="question_9_hint">He has an ice-type zanpakto.</string>
+    <string name="show_answer_button">Show Answer</string>
     <string-array name="question_9_answers">
         <item>A. Jushiro Ukitake</item>
         <item>B. Toshiro Itsugaya</item>
