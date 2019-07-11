@@ -1,11 +1,13 @@
 package christinahunter.quizapp;
 
+import android.content.Context;
+
 public class MultipleChoiceQuestion extends Question {
 
     String[] mOptions;
     int mAnswerIndex; //index into the array of correct answers
 
-    public MultipleChoiceQuestion(int mTextResId, int hintResId,String[] optionsResId, int ans) {
+    public MultipleChoiceQuestion(int mTextResId, int hintResId, String[] optionsResId, int ans) {
         super(mTextResId,hintResId);
         mOptions = optionsResId;
         mAnswerIndex = ans;
@@ -23,5 +25,10 @@ public class MultipleChoiceQuestion extends Question {
 
     public String getWordAt(int index){
         return mOptions[index];
+    }
+
+    @Override
+    public String getAnswerText(Context ctx){
+        return mOptions[mAnswerIndex];
     }
 }

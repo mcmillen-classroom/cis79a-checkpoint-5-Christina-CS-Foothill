@@ -1,5 +1,7 @@
 package christinahunter.quizapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -215,6 +217,9 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         }
         else if(v.getId() == R.id.cheat_button){
             // TODO: Launch CheatActivity
+            Intent cheatIntent = CheatActivity.newIntent(this, currQuestion);
+            startActivity(cheatIntent);
+
         }
     }
 
@@ -297,5 +302,12 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         mCMCButton.setBackground(mDefaultButtonStyle);
         mDMCButton.setBackground(mDefaultButtonStyle);
 
+    }
+
+    public static Intent newIntent(Context ctx){
+
+        Intent ret = new Intent(ctx, QuestionActivity.class);
+
+        return ret;
     }
 }

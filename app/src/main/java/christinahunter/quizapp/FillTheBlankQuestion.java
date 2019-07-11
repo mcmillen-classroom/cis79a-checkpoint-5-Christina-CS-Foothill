@@ -1,5 +1,10 @@
 package christinahunter.quizapp;
 
+import android.content.Context;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class FillTheBlankQuestion extends Question {
 
 
@@ -34,5 +39,11 @@ public class FillTheBlankQuestion extends Question {
     @Override
     public boolean isFillTheBlankQuestion(){
         return true;
+    }
+
+    @Override
+    public String getAnswerText(Context ctx){
+
+        return Arrays.toString(mFillAnswers);
     }
 }

@@ -1,5 +1,7 @@
 package christinahunter.quizapp;
 
+import android.content.Context;
+
 public class TrueFalseQuestion extends Question {
 
 
@@ -25,5 +27,10 @@ public class TrueFalseQuestion extends Question {
     @Override
     public boolean isTrueFalseQuestion(){
         return true;
+    }
+
+    @Override
+    public String getAnswerText(Context ctx){
+        return "" + mAnswer;
     }
 }

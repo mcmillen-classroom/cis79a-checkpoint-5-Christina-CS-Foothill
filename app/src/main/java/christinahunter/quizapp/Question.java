@@ -1,5 +1,7 @@
 package christinahunter.quizapp;
 
+import android.content.Context;
+
 public class  Question {
 
     private int mTextResId;
@@ -18,6 +20,17 @@ public class  Question {
 
     public int getTextResId() {
         return mTextResId;
+    }
+
+    public String getText(Context ctx){
+
+        return ctx.getString(mTextResId);
+    }
+
+    //stub
+    public String getAnswerText(Context ctx){
+
+        return "";
     }
 
     public void setmTextResId(int mTextResId) {

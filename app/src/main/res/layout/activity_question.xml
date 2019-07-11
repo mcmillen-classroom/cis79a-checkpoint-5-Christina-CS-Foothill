@@ -10,6 +10,7 @@
         android:id="@+id/question_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,8 +18,9 @@
         android:adjustViewBounds="true"
         android:maxWidth="300dp"
         android:maxHeight="300dp"
-        android:padding="25dp"
+        android:padding="10dp"
         android:scaleType="fitCenter"/>
+
     <TextView
         android:id="@+id/hint_view"
         android:layout_width="wrap_content"
@@ -78,30 +80,51 @@
 
     </LinearLayout>
 
+
+
     <LinearLayout
         android:id="@+id/multiple_choice_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/a_button"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/b_button"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/c_button"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/d_button"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/a_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/b_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/c_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/d_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
 
     </LinearLayout>
+
+
 
     <LinearLayout
         android:id="@+id/previous_next_button_container"
@@ -117,20 +140,20 @@
             android:text="@string/previous_button"
             android:src="@drawable/arrow_left"/>
 
+        <Button
+            android:id="@+id/cheat_button"
+            android:text="@string/cheat_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <ImageButton
             android:id="@+id/next_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/arrow_right"/>
 
+
     </LinearLayout>
-
-
-    <Button
-        android:id="@+id/cheat_button"
-        android:text="@string/cheat_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/score_view"

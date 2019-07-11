@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button mTrueButton;
     private Button mFalseButton;
@@ -25,13 +25,15 @@ public class MainActivity extends AppCompatActivity{
 
         mNextButton = (Button) findViewById(R.id.start_button);
 
-        mNextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
-                startActivity(intent);
-            }
-        });
+        mNextButton.setOnClickListener(this);
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.start_button){
+            Intent questionsIntent = QuestionActivity.newIntent(this);
+            startActivity(questionsIntent);
+        }
     }
 }
