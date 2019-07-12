@@ -16,6 +16,9 @@ import android.widget.Toast;
 
 public class QuestionActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final int REQUEST_CODE_CHEAT = 0;
+    public static final int REQUEST_CODE_QUIZ_RESTART= 1;
+
     private Button mTrueButton;
     private Button mFalseButton;
     private ImageButton mNextButton;
@@ -109,10 +112,30 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData){
+
+        if(resultCode != RESULT_OK)
+            return;
+
+        if(requestCode == REQUEST_CODE_CHEAT && resultData != null){
+
+            mCheated = CheatActivity.didCheat(resultData);
+
+        }
+
+        if(requestCode == REQUEST_CODE_QUIZ_RESTART && resultData != null){
+            resetQuestions();
+            showToast("Quiz restarted!");
+        }
+    }
+
     public void setUpQuestion(){
+
         currQuestion = mQuestionBank[mCurrentIndex];
         mQuestionTextView.setText(currQuestion.getTextResId());
         mHintTextView.setText(R.string.hint_default_text);
+        mCheated = false;
         if(currQuestion.isHasBeenAnswered())
             mQuestionStatusView.setText(R.string.question_status_answered);
         else
@@ -165,23 +188,27 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             mCurrentIndex++;
 
             if(mCurrentIndex == mQuestionBank.length){
+
+//                mScore = 0;
+//                mScoreView.setText("Score: " + mScore);
+//                showToast("Quiz restarted!");
+//
+
+                Intent quizOverIntent = QuizOverActivity.newIntent(this,mScore);
+                startActivityForResult(quizOverIntent, REQUEST_CODE_QUIZ_RESTART);
                 mCurrentIndex = 0;
-                mScore = 0;
-                mScoreView.setText("Score: " + mScore);
-                showToast("Quiz restarted!");
-                resetQuestions();
             }
+
             setUpQuestion();
         }
         else if(v.getId() == R.id.previous_button){
             //change to previous question
 
-            if(mCurrentIndex == 0){
-                mCurrentIndex = (mQuestionBank.length);
+            if(mCurrentIndex > 0){
+                mCurrentIndex--;
+                setUpQuestion();
             }
 
-            mCurrentIndex--;
-            setUpQuestion();
         }
         else if(v.getId() == R.id.hint_view){
             if(currQuestion.getmHintResId() == -1){
@@ -218,14 +245,19 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         else if(v.getId() == R.id.cheat_button){
             // TODO: Launch CheatActivity
             Intent cheatIntent = CheatActivity.newIntent(this, currQuestion);
-            startActivity(cheatIntent);
+            startActivityForResult(cheatIntent,REQUEST_CODE_CHEAT);
 
         }
     }
 
     public boolean checkAnswer(boolean userInput){
 
-        if(currQuestion.checkAnswer(userInput)){
+        if(mCheated){
+            showToast(this.getString(R.string.cheat_shame));
+            currQuestion.setHasBeenAnswered(true);
+            return false;
+        }
+        else if(currQuestion.checkAnswer(userInput)){
             showToast("You are correct");
             mScore++;
             mScoreView.setText("Score: " + mScore);
@@ -245,7 +277,12 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     public boolean checkAnswer(String userInput){
 
-        if(currQuestion.checkAnswer(userInput)){
+        if(mCheated){
+            showToast(this.getString(R.string.cheat_shame));
+            currQuestion.setHasBeenAnswered(true);
+            return false;
+        }
+        else if(currQuestion.checkAnswer(userInput)){
             showToast("You are correct");
             mScore++;
             mScoreView.setText("Score: " + mScore);
@@ -265,7 +302,12 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     public boolean checkAnswer(int userInput){
 
-        if(currQuestion.checkAnswer(userInput)){
+        if(mCheated){
+            showToast(this.getString(R.string.cheat_shame));
+            currQuestion.setHasBeenAnswered(true);
+            return false;
+        }
+        else if(currQuestion.checkAnswer(userInput)){
             showToast("You are correct");
             mScore++;
             mScoreView.setText("Score: " + mScore);
@@ -285,7 +327,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     public void showToast(String s){
         Toast myToast = Toast.makeText(this, s, Toast.LENGTH_SHORT);
-        myToast.setGravity(Gravity.TOP,0,0);
+        myToast.setGravity(Gravity.CENTER_VERTICAL,0,0);
         myToast.show();
     }
 
@@ -301,6 +343,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         mBMCButton.setBackground(mDefaultButtonStyle);
         mCMCButton.setBackground(mDefaultButtonStyle);
         mDMCButton.setBackground(mDefaultButtonStyle);
+        mCurrentIndex = 0;
+        mScore = 0;
 
     }
 

@@ -12,6 +12,11 @@ import android.widget.Toast;
 
 public class CheatActivity extends AppCompatActivity implements View.OnClickListener {
 
+
+    public static final String EXTRA_QUESTION_TEXT = "question_text";
+    public static final String EXTRA_ANSWER_TEXT = "answer_text";
+    public static final String EXTRA_DID_CHEAT = "did_cheat";
+
     private TextView mQuestionTextView;
     private TextView mAnswerTextView;
     private Button mShowAnswerButton;
@@ -30,9 +35,9 @@ public class CheatActivity extends AppCompatActivity implements View.OnClickList
         mShowAnswerButton.setOnClickListener(this);
 
         Intent launchIntent = getIntent();
-        mQuestionText = launchIntent.getStringExtra("question_text");
+        mQuestionText = launchIntent.getStringExtra(EXTRA_QUESTION_TEXT);
         mQuestionTextView.setText(mQuestionText);
-        mAnswerText = launchIntent.getStringExtra("answer_text");
+        mAnswerText = launchIntent.getStringExtra(EXTRA_ANSWER_TEXT);
 
     }
 
@@ -41,9 +46,12 @@ public class CheatActivity extends AppCompatActivity implements View.OnClickList
 
         if(view.getId() == R.id.show_answer_button){
             mAnswerTextView.setText(mAnswerText);
-            Toast myToast = Toast.makeText(this,"I'm disappointed in you...", Toast.LENGTH_SHORT);
-            myToast.setGravity(Gravity.TOP,0,0);
+            Toast myToast = Toast.makeText(this,R.string.disappointed_text, Toast.LENGTH_SHORT);
+            myToast.setGravity(Gravity.CENTER_VERTICAL,0,0);
             myToast.show();
+            Intent resIntent = new Intent();
+            resIntent.putExtra(EXTRA_DID_CHEAT, true);
+            setResult(RESULT_OK,resIntent);
         }
 
     }
@@ -52,8 +60,13 @@ public class CheatActivity extends AppCompatActivity implements View.OnClickList
 
         Intent ret = new Intent(ctx, CheatActivity.class);
         //
-        ret.putExtra("question_text",question.getText(ctx));
-        ret.putExtra("answer_text", question.getAnswerText(ctx));
+        ret.putExtra(EXTRA_QUESTION_TEXT,question.getText(ctx));
+        ret.putExtra(EXTRA_ANSWER_TEXT, question.getAnswerText(ctx));
         return ret;
+    }
+
+    public static boolean didCheat(Intent resultData){
+        //if user never clicks answer button, didCheat returns a default value of false
+       return resultData.getBooleanExtra(EXTRA_DID_CHEAT,false);
     }
 }
