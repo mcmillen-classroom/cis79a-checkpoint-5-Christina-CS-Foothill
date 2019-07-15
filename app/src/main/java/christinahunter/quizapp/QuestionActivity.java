@@ -339,6 +339,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         mQuestionStatusView.setText("");
         mEditText.setText("");
         mEditText.setTextColor(getResources().getColor(R.color.colorBlack));
+        mScoreView.setText("Score: 0");
         mAMCButton.setBackground(mDefaultButtonStyle);
         mBMCButton.setBackground(mDefaultButtonStyle);
         mCMCButton.setBackground(mDefaultButtonStyle);
