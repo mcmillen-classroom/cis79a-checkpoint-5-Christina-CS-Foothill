@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,18 @@ import android.widget.Toast;
 
 public class QuestionActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "QuestionActivity";
+    private static final String KEY_INDEX = "index";
+    private static final String KEY_SCORE = "score";
+    private static final String KEY_Q1_STATUS = "1status";
+    private static final String KEY_Q2_STATUS = "2status";
+    private static final String KEY_Q3_STATUS = "3status";
+    private static final String KEY_Q4_STATUS = "4status";
+    private static final String KEY_Q5_STATUS = "5status";
+    private static final String KEY_Q6_STATUS = "6status";
+    private static final String KEY_Q7_STATUS = "7status";
+    private static final String KEY_Q8_STATUS = "8status";
+    private static final String KEY_Q9_STATUS = "9status";
     private static final int REQUEST_CODE_CHEAT = 0;
     public static final int REQUEST_CODE_QUIZ_RESTART= 1;
 
@@ -41,12 +54,13 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private int mScore = 0;
     private TextView mQuestionStatusView;
     private Question[] mQuestionBank = new Question[9];
-    private int mCurrentIndex = 0;
+    private int mCurrentIndex;
     private Drawable mDefaultButtonStyle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_question);
 
 
@@ -93,8 +107,25 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         mScoreView = (TextView) findViewById(R.id.score_view);
 
 
+        //initialize mCurrentIndex
+        if((savedInstanceState != null)){
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX,0);
+            mScore = savedInstanceState.getInt(KEY_SCORE,0);
+            Log.d(TAG,"score value is: " + mScore);
+            mQuestionBank[0].setHasBeenAnswered(savedInstanceState.getBoolean(KEY_Q1_STATUS,false));
+            mQuestionBank[1].setHasBeenAnswered(savedInstanceState.getBoolean(KEY_Q2_STATUS,false));
+            mQuestionBank[2].setHasBeenAnswered(savedInstanceState.getBoolean(KEY_Q3_STATUS,false));
+            mQuestionBank[3].setHasBeenAnswered(savedInstanceState.getBoolean(KEY_Q4_STATUS,false));
+            mQuestionBank[4].setHasBeenAnswered(savedInstanceState.getBoolean(KEY_Q5_STATUS,false));
+            mQuestionBank[5].setHasBeenAnswered(savedInstanceState.getBoolean(KEY_Q6_STATUS,false));
+            mQuestionBank[6].setHasBeenAnswered(savedInstanceState.getBoolean(KEY_Q7_STATUS,false));
+            mQuestionBank[7].setHasBeenAnswered(savedInstanceState.getBoolean(KEY_Q8_STATUS,false));
+            mQuestionBank[8].setHasBeenAnswered(savedInstanceState.getBoolean(KEY_Q9_STATUS,false));
+        }
+
         //now display the first question
         setUpQuestion();
+        mScoreView.setText("Score: " + mScore);
 
         //set the click listeners
         mTrueButton.setOnClickListener(this);
@@ -355,4 +386,53 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
         return ret;
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart() called");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() called");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause() called");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, "onSaveInstanceState");
+        outState.putInt(KEY_INDEX,mCurrentIndex);
+        outState.putInt(KEY_SCORE,mScore);
+        outState.putBoolean(KEY_Q1_STATUS,mQuestionBank[0].isHasBeenAnswered());
+        outState.putBoolean(KEY_Q2_STATUS,mQuestionBank[1].isHasBeenAnswered());
+        outState.putBoolean(KEY_Q3_STATUS,mQuestionBank[2].isHasBeenAnswered());
+        outState.putBoolean(KEY_Q4_STATUS,mQuestionBank[3].isHasBeenAnswered());
+        outState.putBoolean(KEY_Q5_STATUS,mQuestionBank[4].isHasBeenAnswered());
+        outState.putBoolean(KEY_Q6_STATUS,mQuestionBank[5].isHasBeenAnswered());
+        outState.putBoolean(KEY_Q7_STATUS,mQuestionBank[6].isHasBeenAnswered());
+        outState.putBoolean(KEY_Q8_STATUS,mQuestionBank[7].isHasBeenAnswered());
+        outState.putBoolean(KEY_Q9_STATUS,mQuestionBank[8].isHasBeenAnswered());
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop() called");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() called");
+    }
 }
+
