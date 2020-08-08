@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="true_button">verdadero</string>
+    <string name="false_button">falso</string>
+    <string name="next_button">siguiente</string>
+    <string name="previous_button">anterior</string>
+    <string name="hint_default_text">Haga clic aquí para ver si hay una pista disponible para esta pregunta.</string>
+    <string name="hint_unavailable_text">Lo sentimos, no hay ninguna pista disponible.</string>
+    <string name="score_text">Puntuación: 0</string>
+    <string name="question_status_answered">Ya respondiste a esta pregunta.</string>
+    <string name="check_button">Comprobar</string>
+    <string name="cheat_button">¿Quieres hacer trampa?</string>
+    <string name="show_answer_button">Mostrar respuesta</string>
+    <string name="cheat_warning">¿Seguro que quieres hacer trampa? Los tramposos nunca prosperan ...</string>
+    <string name="cheat_shame">¡LOS TRAMPOSOS NUNCA GANAN! No hay puntos para ti.</string>
+    <string name="disappointed_text">Estoy decepcionado de ti...</string>
+    <string name="final_score_text">Puntuación final:</string>
+    <string name="quiz_over_text">La prueba ha terminado</string>
+    <string name="share_final_score">¡Esta fue mi puntuación final para la aplicación Bleach Quiz! Me echa un vistazo :)</string>
+    <string name="question_1">El anime Bleach presenta a un personaje principal con cabello rojo brillante.</string>
+    <string name="question_2">El autor de la serie de manga Bleach se llama Tite Kubo.</string>
+    <string name="question_3">Ichigo es el único en su familia con la habilidad de ver espíritus.</string>
+    <string name="question_3_hint">¿Cómo se entera la hermana menor de Ichigo, Karin, que Ichigo es un Shinigami?</string>
+    <string name="question_4">Ichigo vio a su madre morir en un accidente automovilístico cuando él era un niño.</string>
+    <string name="question_5">Toshiro Hitsugaya es el único personaje de Bleach con un zanpakto tipo hielo.</string>
+    <string name="question_5_hint">¿Qué tipo de zanpakto tiene Rukia?</string>
+    <string name="question_6">Ichigo es en parte hueco.</string>
+    <string name="question_6_hint">¿Cómo derrota Ichigo a Ulquiorra al final del arco de Arrancar?</string>
+    <string name="question_7">La división militar principal de la Sociedad de Almas se divide en 13 escuadrones diferentes, cada uno con su propio capitán al mando.</string>
+    <string name="question_8">¿Cuál de los amigos de Ichigo es un Quincy?</string>
+    <string name="question_8_hint">Usa lentes.</string>
+    <string name="question_9">¿Quién es el capitán del equipo 10?</string>
+    <string name="question_9_hint">Tiene un zanpakto tipo hielo.</string>
+    <string name="restart_quiz_text">¿Intentar Quiz de nuevo?</string>
+    <string name="share_button">¿Comparte tu puntuación?</string>
+</resources>
